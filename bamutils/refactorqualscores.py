@@ -2,22 +2,25 @@ import sys
 
 def process(fname):
     fin = open(fname)
-
+    fixed_count = 0
+    total_reads = 0
     for line in fin:
+        total_reads += 1
         if line[0] == '@':
-            print line,
+            print line
             continue
         else:
             line = line.strip().split("\t")
             if len(line[10]) != len(line[9]):
-                print >> sys.stderr, "number of quality scores does not match number of bases: [%s] vs. [%s]" % (
-                line[9], line[10])
+                sys.stderr.write("number of quality scores does not match number of bases: [%s] vs. [%s]" % (line[9], line[10]))
                 line[10] = 'O' * len(line[9])
             else:
                 if check_illumina15_encoding(line[10]):
                     line[10] = illumina15_Sanger(line[10])
 
             print "\t".join(line)
+            fixed_count +=1
+    print
     fin.close()
 
 def check_illumina15_encoding(qual):
