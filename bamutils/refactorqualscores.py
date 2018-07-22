@@ -7,13 +7,13 @@ def process(fname):
     total_reads = 0
 
     for l in fin:
-        line = copy.deepcopy(l)
+        line = copy.deepcopy(l).strip('\n')
         total_reads += 1
         if line[0] == '@':
             print line
             continue
         else:
-            line = line.strip('\n').split("\t")
+            line = line.split("\t")
             if len(line[10]) != len(line[9]):
                 sys.stderr.write(
                     "number of quality scores does not match number of bases: [%s] vs. [%s]" % (line[9], line[10]))
