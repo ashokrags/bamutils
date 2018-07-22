@@ -20,7 +20,8 @@ def process(fname):
 
             print "\t".join(line)
             fixed_count +=1
-    print
+
+    print "number of reads fixed: " + str(fixed_count)
     fin.close()
 
 def check_illumina15_encoding(qual):
