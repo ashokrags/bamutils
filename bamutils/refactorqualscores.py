@@ -13,7 +13,7 @@ def process(fname):
             print line
             continue
         else:
-            line = line.strip().split("\t")
+            line = line.strip('\n').split("\t")
             if len(line[10]) != len(line[9]):
                 sys.stderr.write(
                     "number of quality scores does not match number of bases: [%s] vs. [%s]" % (line[9], line[10]))
