@@ -7,21 +7,23 @@ def process(fname):
         if line[0] == '@':
             print line,
             continue
-        line = line.strip().split("\t")
-        if len(line[10]) != len(line[9]):
-            print >>sys.stderr, "number of quality scores does not match number of bases: [%s] vs. [%s]" % (line[9], line[10])
-            line[10] = 'O' * len(line[9])
-            print line
         else:
-            if check_encoding(line[10])
-                line[10] = illumina15_Sanger(line[10])
-        print "\t".join(line)
+            line = line.strip().split("\t")
+            if len(line[10]) != len(line[9]):
+                print >> sys.stderr, "number of quality scores does not match number of bases: [%s] vs. [%s]" % (
+                line[9], line[10])
+                line[10] = 'O' * len(line[9])
+            else:
+                if check_encoding(line[10]):
+                    line[10] = illumina15_Sanger(line[10])
+
+            print "\t".join(line)
     fin.close()
 
 def check_illumina15_encoding(qual):
     encoded = False
     for q in qual:
-        if ord(q) ge 74:
+        if ord(q) >= 74:
             encoded = True
         return encoded
 
