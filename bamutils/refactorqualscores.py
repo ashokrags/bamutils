@@ -1,11 +1,13 @@
-import sys
+import sys, copy
 
 
 def process(fname):
     fin = open(fname)
     fixed_count = 0
     total_reads = 0
-    for line in fin:
+
+    for l in fin:
+        line = copy.deepcopy(l)
         total_reads += 1
         if line[0] == '@':
             print line
@@ -19,6 +21,7 @@ def process(fname):
             else:
                 if check_illumina15_encoding(line[10]):
                     line[10] = illumina15_Sanger(line[10])
+
             print "\t".join(line)
             fixed_count += 1
 
