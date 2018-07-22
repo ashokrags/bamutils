@@ -16,8 +16,10 @@ def process(fname):
             line = line.split("\t")
             if len(line[10]) != len(line[9]):
                 sys.stderr.write(
-                    "number of quality scores does not match number of bases: [%s] vs. [%s]" % (line[9], line[10]))
-                line[10] = 'O' * len(line[9])
+                    "Dropping line !!! number of quality scores does not match number of bases: [%s] vs. [%s]" % (
+                    line[9], line[10]) + "\n"
+                    + line + "\n")
+                # line[10] = 'O' * len(line[9])
             else:
                 if check_illumina15_encoding(line[10]):
                     line[10] = illumina15_to_sanger(line[10])
@@ -26,7 +28,7 @@ def process(fname):
                 else:
                     print "\t".join(line)
 
-    print "number of reads fixed: " + str(fixed_count)
+    sys.stderr.write("number of reads fixed: " + str(fixed_count))
     fin.close()
 
 
