@@ -14,7 +14,7 @@ def process(fname):
                 line[9], line[10])
                 line[10] = 'O' * len(line[9])
             else:
-                if check_encoding(line[10]):
+                if check_illumina15_encoding(line[10]):
                     line[10] = illumina15_Sanger(line[10])
 
             print "\t".join(line)
