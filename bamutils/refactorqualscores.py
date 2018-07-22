@@ -28,7 +28,7 @@ def process(fname):
                 else:
                     print "\t".join(line)
 
-    sys.stderr.write("number of reads fixed: " + str(fixed_count))
+    sys.stderr.write("number of reads fixed: " + str(fixed_count) + "\n")
     fin.close()
 
 
