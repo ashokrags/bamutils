@@ -20,7 +20,7 @@ def process(fname):
                 line[10] = 'O' * len(line[9])
             else:
                 if check_illumina15_encoding(line[10]):
-                    line[10] = illumina15_Sanger(line[10])
+                    line[10] = illumina15_to_sanger(line[10])
 
             print "\t".join(line)
             fixed_count += 1
@@ -37,7 +37,7 @@ def check_illumina15_encoding(qual):
     return encoded
 
 
-def Illumina15_Sanger(qual):
+def illumina15_to_sanger(qual):
     """
     Converts Illumina1.5+ (PhredB+64) to Sanger(Phred+33)
     """
