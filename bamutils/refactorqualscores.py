@@ -22,9 +22,9 @@ def process(fname):
                 if check_illumina15_encoding(line[10]):
                     line[10] = illumina15_to_sanger(line[10])
                     print "\t".join(line)
+                    fixed_count += 1
                 else:
                     print "\t".join(line)
-            fixed_count += 1
 
     print "number of reads fixed: " + str(fixed_count)
     fin.close()
