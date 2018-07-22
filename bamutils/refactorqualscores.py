@@ -32,8 +32,9 @@ def process(fname):
 def check_illumina15_encoding(qual):
     encoded = False
     for q in qual:
-        if ord(q) >= 74:
+        if ord(q) >= 76:
             encoded = True
+
     return encoded
 
 
